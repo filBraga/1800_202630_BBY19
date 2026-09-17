@@ -66,7 +66,7 @@ elmo-hikes/
 
 
 ## Contributors
-- Marcelo Lizama - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under 2 minutes.
+- Marcelo Lizama - BCIT CST Student who enjoys living in the moment.
 
 ---
 
