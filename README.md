@@ -66,8 +66,7 @@ elmo-hikes/
 
 
 ## Contributors
-- **Filipe Braga** - BCIT CST Student from Brazil! I have two cats and game enthusiastic!
-- Marcelo Lizama - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under 2 minutes.
+- **Filipe Braga** - A BCIT CST student from Brazil who is passionate about software development, cloud technologies, and problem-solving. Outside of school, I enjoy gaming, exploring new tech, and taking care of my two cats!
 
 ---
 
