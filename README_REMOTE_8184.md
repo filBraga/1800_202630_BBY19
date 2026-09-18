@@ -61,8 +61,8 @@ elmo-hikes/
 ---
 
 ## Contributors
-- **Marcelo Lizama** - BCIT CST Student who is really into programming. In his down time he enjoys working out, going on walks and reading fiction.
 - **Filipe Braga** - A BCIT CST student from Brazil who is passionate about software development, cloud technologies, and problem-solving. Outside of school, I enjoy gaming, exploring new tech, and taking care of my two cats!
+
 - **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I love skiing and mountian biking.
 
 ---
