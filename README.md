@@ -1,13 +1,12 @@
 # Elmo Hikes
 
-
 ## Overview
+
 Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
 
 Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
 
 ---
-
 
 ## Features
 
@@ -18,7 +17,6 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ---
 
-
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript
@@ -27,7 +25,6 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 - **Database**: Firestore
 
 ---
-
 
 ## Usage
 
@@ -46,7 +43,6 @@ Once the application is running:
 
 ---
 
-
 ## Project Structure
 
 ```
@@ -64,13 +60,12 @@ elmo-hikes/
 
 ---
 
-
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Marcelo Lizama** - BCIT CST Student who is really into programming. In his down time he enjoys working out, going on walks and reading fiction.
+- **Filipe Braga** - A BCIT CST student from Brazil who is passionate about software development, cloud technologies, and problem-solving. Outside of school, I enjoy gaming, exploring new tech, and taking care of my two cats!
+- **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I love skiing and mountian biking.
 
 ---
-
 
 ## Acknowledgments
 
@@ -80,8 +75,8 @@ elmo-hikes/
 
 ---
 
-
 ## Limitations and Future Work
+
 ### Limitations
 
 - Limited trail details (e.g., no live trail conditions).
@@ -94,7 +89,6 @@ elmo-hikes/
 - Create a dark mode for better usability in low-light conditions.
 
 ---
-
 
 ## License
 
