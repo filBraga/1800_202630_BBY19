@@ -66,7 +66,7 @@ elmo-hikes/
 
 
 ## Contributors
-- **Marcelo Lizama** - BCIT CST Student who enjoys living in the moment.
+- **Marcelo Lizama** - BCIT CST Student who is really into programming. In his down time he enjoys working out, going on walks and reading fiction.
 
 ---
 
