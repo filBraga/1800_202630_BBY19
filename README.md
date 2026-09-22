@@ -62,7 +62,7 @@ elmo-hikes/
 
 ## Contributors
 
-- **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I love skiing and mountian biking.
+- **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I quite like skiing and mountian biking.
 
 ---
 
