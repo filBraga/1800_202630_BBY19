@@ -1,1 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
 
+.jolly-lodger-regular {
+  font-family: "Jolly Lodger", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
