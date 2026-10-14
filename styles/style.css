@@ -1,1 +1,33 @@
+.app-navbar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
 
+.app-navbar_item {
+  display: flex;
+  min-width: 5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: #6b7280;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.app-navbar_item:hover,
+.app-navbar_item:focus-visible,
+.app-navbar_item--active {
+  color: #2563eb;
+}
+
+.app-navbar_icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
