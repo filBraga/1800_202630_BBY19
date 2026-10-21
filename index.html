@@ -1,104 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>My BCIT Project</title>
-  <meta name="comp1800 template" content="My 1800 App" />
-
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Other libraries go here -->
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
-  <!-- <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet" /> -->
-  <!-- <link href="./styles/style.css" rel="stylesheet" /> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Vite application" />
+  <title>Sudoku</title>
 </head>
 
-<body>
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
-  <!-- Stuff for body goes here -->
-
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
-
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand fw-semibold" href="#home">Doomscroll</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#break-ideas">Break ideas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#progress">My progress</a>
-          </li>
-        </ul>
-        <a class="btn btn-primary" href="#take-a-break">Take a break</a>
+<body class="m-0 p-0">
+  <div class="d-flex justify-content-center align-items-center flex-column gap-5 min-vh-100">
+    <div class="d-flex justify-content-center align-items-center">
+      <div id="sudoku-board" class="d-grid">
+        <!-- Box content -->
       </div>
     </div>
-  </nav>
-
-    <div class="container my-5">
-        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 class="display-4 fw-bold lh-md fs-lg jolly-lodger-regular">Stop Doom</h1>
-            <p class="lead">
-                Stop Doom is an app made by BCIT students to help reduce and eventually eliminate your doom scrolling habits!
-                Stop Doom is designed to improve the users problem solving skills and mental health by providing fun puzzles
-                each day so they can limit their time spent using social media. Ready to jump in? Log in or sign up now to begin
-                your puzzle fun!
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Log In</button>
-              <button type="button" class="btn btn-outline-secondary btn-lg px-4">Sign Up</button>
-            </div>
-          </div>
-        </div>
+    <div id="number-pad" class="d-grid">
+      <button class="btn btn-light border rounded-0">1</button>
+      <button class="btn btn-light border rounded-0">2</button>
+      <button class="btn btn-light border rounded-0">3</button>
+      <button class="btn btn-light border rounded-0">4</button>
+      <button class="btn btn-light border rounded-0">5</button>
+      <button class="btn btn-light border rounded-0">6</button>
+      <button class="btn btn-light border rounded-0">7</button>
+      <button class="btn btn-light border rounded-0">8</button>
+      <button class="btn btn-light border rounded-0">9</button>
     </div>
-
-  <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <p class="col-md-4 mb-0 text-body-secondary">© 2026 BBY19 Burnaby</p>
-      <a href="/"
-        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-        aria-label="Bootstrap">
-        <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-      </a>
-      <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Puzzles</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Daily Motivation</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-        </li>
-      </ul>
-    </footer>
   </div>
-
-  <!-- <nav class="app-navbar" aria-label="Main navigation">
+  <nav class="app-navbar" aria-label="Main navigation">
     <a class="app-navbar_item" href="#social">
       <span class="app-navbar_icon mdi mdi-account-multiple" aria-hidden="true"></span>
       <span>Social</span>
@@ -111,11 +40,8 @@
       <span class="app-navbar_icon mdi mdi-puzzle" aria-hidden="true"></span>
       <span>My Puzzles</span>
     </a>
-  </nav> -->
-
-  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-    crossorigin="anonymous"></script>
+  </nav>
+  <script type="module" src="./src/index.js"></script>
 </body>
 
 </html>
