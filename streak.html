@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Doomscroll - Daily Streak</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">Doomscroll</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="timeSpent.html">Time Spent</a></li>
+          <li class="nav-item"><a class="nav-link" href="motivation.html">Motivation</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="streak.html">Daily Streak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="page-card">
+      <h1 class="h3">Daily streak</h1>
+      <!-- placeholder: fill #streak-count from JS/Firestore -->
+      <p id="streak-count" class="big-number">0</p>
+      <p class="text-body-secondary">days in a row</p>
+      <div class="streak-days">
+        <span class="streak-day">M</span>
+        <span class="streak-day">T</span>
+        <span class="streak-day">W</span>
+        <span class="streak-day">T</span>
+        <span class="streak-day">F</span>
+        <span class="streak-day">S</span>
+        <span class="streak-day">S</span>
+      </div>
+      <div class="placeholder-box">Best streak: --</div>
+      <div class="placeholder-box">Rewards / badges go here</div>
+    </section>
+  </main>
+
+  <div class="container">
+    <footer class="d-flex justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="mb-0 text-body-secondary">&copy; 2026 BBY19 Burnaby</p>
+    </footer>
+  </div>
+</body>
+
+</html>
