@@ -6,11 +6,7 @@
 // Manages the login/signup form behaviour and redirects.
 // -------------------------------------------------------------
 
-// import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
-import '/styles/style.css';
+// Bootstrap and style.css are loaded in login.html, like the other pages
 import {
     loginUser,
     signupUser,

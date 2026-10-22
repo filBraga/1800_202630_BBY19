@@ -1,140 +1,86 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <title>My BCIT Project</title>
-  <meta name="comp1800 template" content="My 1800 App" />
 
-  <!-- Required meta tags -->
+<head>
+  <title>Doomscroll - Login</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Other libraries go here -->
-  <!-- <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
-  <!-- <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" /> -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet" /> -->
-  <!-- <link href="./styles/style.css" rel="stylesheet" /> --->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./styles/style.css" rel="stylesheet" />
+  <script type="module" src="/src/loginSignup.js"></script>
 </head>
 
 <body>
- <!-- navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="#home">Doomscroll</a>
+      <a class="navbar-brand fw-semibold" href="index.html">Doomscroll</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#break-ideas">Break ideas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#progress">My progress</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="timeSpent.html">Time Spent</a></li>
+          <li class="nav-item"><a class="nav-link" href="motivation.html">Motivation</a></li>
+          <li class="nav-item"><a class="nav-link" href="streak.html">Daily Streak</a></li>
         </ul>
-        <a class="btn btn-primary" href="#take-a-break">Take a break</a>
       </div>
     </div>
   </nav>
 
-<!-- <main-content></main-content> -->
- <div class="container py-5" style="max-width: 420px;">
-        <!-- Alerts -->
-        <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
+  <main class="container">
+    <section class="page-card text-start">
+      <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
 
-        <!-- Login -->
-        <div id="loginView">
-            <h3 class="mb-3 text-center">Login</h3>
-            <form id="loginForm" novalidate>
-                <div class="mb-3">
-                    <input type="email" id="loginEmail" class="form-control" placeholder="Email" required />
-                </div>
-                <div class="mb-3">
-                    <input type="password" id="loginPassword" class="form-control" placeholder="Password" required />
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-            </form>
-            <small class="d-block mt-3 text-center">
-                Don’t have an account?
-                <a href="#" id="toSignup">Sign up</a>
-            </small>
-        </div>
+      <div id="loginView">
+        <h1 class="h3 mb-3 text-center">Login</h1>
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" id="loginEmail" class="form-control" autocomplete="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <p class="mt-3 mb-0 text-center small">
+          Don't have an account? <a href="#" id="toSignup">Sign up</a>
+        </p>
+      </div>
 
-        <!-- Signup -->
-        <div id="signupView" class="d-none">
-            <h3 class="mb-3 text-center">Sign Up</h3>
-            <form id="signupForm" novalidate>
-                <div class="mb-3">
-                    <input type="text" id="signupName" class="form-control" placeholder="First and Last Name"
-                        aria-label="Full name" required />
-                </div>
-                <div class="mb-3">
-                    <input type="email" id="signupEmail" class="form-control" placeholder="Email" required />
-                </div>
-                <div class="mb-3">
-                    <input type="password" id="signupPassword" class="form-control" placeholder="Password" required />
-                </div>
-                <button type="submit" class="btn btn-success w-100">Create Account</button>
-            </form>
-            <small class="d-block mt-3 text-center">
-                Already have an account?
-                <a href="#" id="toLogin">Login</a>
-            </small>
-        </div>
-    </div>
+      <div id="signupView" class="d-none">
+        <h1 class="h3 mb-3 text-center">Sign Up</h1>
+        <form id="signupForm" novalidate>
+          <div class="mb-3">
+            <label for="signupName" class="form-label">First and last name</label>
+            <input type="text" id="signupName" class="form-control" autocomplete="name" required />
+          </div>
+          <div class="mb-3">
+            <label for="signupEmail" class="form-label">Email</label>
+            <input type="email" id="signupEmail" class="form-control" autocomplete="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="signupPassword" class="form-label">Password</label>
+            <input type="password" id="signupPassword" class="form-control" autocomplete="new-password" minlength="6"
+              required />
+          </div>
+          <button type="submit" class="btn btn-success w-100">Create Account</button>
+        </form>
+        <p class="mt-3 mb-0 text-center small">
+          Already have an account? <a href="#" id="toLogin">Login</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-  
-  
-
-
-
-
-<!-- Footer -->
   <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <p class="col-md-4 mb-0 text-body-secondary">© 2026 BBY19 Burnaby</p>
-      <a href="/"
-        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-        aria-label="Bootstrap">
-        <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-      </a>
-      <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Puzzles</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Daily Motivation</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-        </li>
-      </ul>
+    <footer class="d-flex justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="mb-0 text-body-secondary">&copy; 2026 BBY19 Burnaby</p>
     </footer>
   </div>
-
-
-
-  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-    crossorigin="anonymous"></script>
-
-  <!-- Firebase and authentication related scripts -->
-  <!-- The order of loading matters -->
-  <script type="module" src="/src/loginSignup.js"></script>
 </body>
-
 
 </html>
