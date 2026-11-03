@@ -1,19 +1,17 @@
-# Elmo Hikes
+# Stop Doom
 
 ## Overview
 
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
 
-Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
 
 ---
 
 ## Features
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
-- Responsive design for desktop and mobile
+-
+-
+-
+-
 
 ---
 
@@ -21,8 +19,8 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Build Tool**: [Vite](https://vitejs.dev/)
-- **Backend**: Firebase for hosting
-- **Database**: Firestore
+- **Backend**: [Firebase](https://firebase.google.com/) for hosting
+- **Database**: [Firestore](https://firebase.google.com/products/firestore)
 
 ---
 
@@ -37,32 +35,33 @@ To run the application locally:
 
 Once the application is running:
 
-1.  Browse the list of hiking trails displayed on the main page.
-2.  Click the heart icon (or similar) to mark a trail as a favorite.
-3.  View your favorite hikes in the favorites section.
+1.
+2.
+3.
 
 ---
 
 ## Project Structure
 
 ```
-elmo-hikes/
+stop_doom/
 ├── src/
-│   ├── main.js
+│   ├── index.js
 ├── styles/
 │   └── style.css
 ├── public/
 ├── images/
 ├── index.html
 ├── package.json
-├── README.md
+├── package-lock.json
+├── LICENSE
+└── README.md
 ```
 
 ---
 
 ## Contributors
 
-- **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I quite like skiing and mountian biking.
 - **Marcelo Lizama** - BCIT CST Student who is really into programming. In his down time he enjoys working out, going on walks and reading fiction.
 - **Filipe Braga** - A BCIT CST student from Brazil who is passionate about software development, cloud technologies, and problem-solving. Outside of school, I enjoy gaming, exploring new tech, and taking care of my two cats!
 - **Ryan Wright** - BCIT CST Student from USA.. I am looking forward to learning a lot of new content this term. I love skiing and mountian biking.
@@ -71,9 +70,9 @@ elmo-hikes/
 
 ## Acknowledgments
 
-- Trail data and images are for demonstration purposes only.
-- Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+-
+-
+-
 
 ---
 
@@ -81,14 +80,14 @@ elmo-hikes/
 
 ### Limitations
 
-- Limited trail details (e.g., no live trail conditions).
-- Accessibility features can be further improved.
+-
+-
 
 ### Future Work
 
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
+-
+-
+-
 
 ---
 
