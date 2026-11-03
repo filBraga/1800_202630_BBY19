@@ -39,3 +39,41 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* Feature pages: time spent, motivation, streak */
+.page-card {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.big-number {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.placeholder-box {
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 2px dashed black;
+  border-radius: 8px;
+  color: #6c757d;
+}
+
+.streak-days {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.streak-day {
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  border: 1px solid black;
+  border-radius: 50%;
+}
