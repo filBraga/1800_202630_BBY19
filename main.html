@@ -26,29 +26,8 @@
   <!-- Your own JavaScript functions go here    -->
   <!---------------------------------------------->
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand fw-semibold" href="#home">Doomscroll</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#break-ideas">Break ideas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#progress">My progress</a>
-          </li>
-        </ul>
-        <a class="btn btn-primary" href="#take-a-break">Take a break</a>
-      </div>
-    </div>
-  </nav>
+  <site-navbar></site-navbar>
+  <script type="module" src="/src/components/siteNavbar.js"></script>
 
 
   
@@ -62,8 +41,19 @@
   </div>
 
     <div class="container-fluid bg-body text-dark p-5">
-        <h1>Daily Puzzle</h1>
-        <div id="hikes-go-here" class="row">
+        <div class="container px-5">
+            <h1>Daily Puzzle</h1>
+            <div id="hikes-go-here" class="row">
+            </div>
+
+            <h2 class="h3 mt-5">Puzzles</h2>
+            <p class="text-body-secondary">Pick a puzzle instead of scrolling.</p>
+            <div class="list-group">
+                <a href="sudoku.html" class="list-group-item list-group-item-action">
+                    <div class="fw-semibold">Sudoku</div>
+                    <small class="text-body-secondary">Fill the 9x9 grid so every row, column and box has 1-9.</small>
+                </a>
+            </div>
         </div>
     </div>
     <template id="hikeCardTemplate">
