@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sudoku</title>
+</head>
+
+<body class="m-0 p-0">
+  <site-navbar></site-navbar>
+  <script type="module" src="/src/components/siteNavbar.js"></script>
+  <div class="d-flex justify-content-center align-items-center flex-column gap-5 min-vh-100">
+    <div class="d-flex justify-content-center align-items-center">
+      <div id="sudoku-board" class="d-grid">
+        <!-- Box content -->
+      </div>
+    </div>
+    <div id="number-pad" class="d-grid">
+      <button class="btn btn-light border rounded-0">1</button>
+      <button class="btn btn-light border rounded-0">2</button>
+      <button class="btn btn-light border rounded-0">3</button>
+      <button class="btn btn-light border rounded-0">4</button>
+      <button class="btn btn-light border rounded-0">5</button>
+      <button class="btn btn-light border rounded-0">6</button>
+      <button class="btn btn-light border rounded-0">7</button>
+      <button class="btn btn-light border rounded-0">8</button>
+      <button class="btn btn-light border rounded-0">9</button>
+    </div>
+  </div>
+  <nav class="app-navbar" aria-label="Main navigation">
+    <a class="app-navbar_item" href="#social">
+      <span class="app-navbar_icon mdi mdi-account-multiple" aria-hidden="true"></span>
+      <span>Social</span>
+    </a>
+    <a class="app-navbar_item" href="index.html">
+      <span class="app-navbar_icon mdi mdi-home" aria-hidden="true"></span>
+      <span>Home</span>
+    </a>
+    <a class="app-navbar_item" href="sudoku.html" aria-current="page">
+      <span class="app-navbar_icon mdi mdi-puzzle" aria-hidden="true"></span>
+      <span>My Puzzles</span>
+    </a>
+  </nav>
+  <script type="module" src="./src/sudoku.js"></script>
+</body>
+
+</html>

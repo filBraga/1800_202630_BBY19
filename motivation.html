@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Doomscroll - Motivation</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <site-navbar></site-navbar>
+  <script type="module" src="/src/components/siteNavbar.js"></script>
+
+  <main class="container">
+    <section class="page-card">
+      <h1 class="h3">Motivation example</h1>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#motivation-modal">
+        Motivate me
+      </button>
+    </section>
+
+    <div class="modal fade" id="motivation-modal" tabindex="-1" aria-labelledby="motivation-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="motivation-title">Your motivation</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!-- placeholder: swap #motivation-message text from JS -->
+          <div class="modal-body" id="motivation-message">May the force be with you!</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thanks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="container">
+    <footer class="d-flex justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="mb-0 text-body-secondary">&copy; 2026 BBY19 Burnaby</p>
+    </footer>
+  </div>
+</body>
+
+</html>
