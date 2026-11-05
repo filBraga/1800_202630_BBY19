@@ -13,6 +13,7 @@ import { initializeApp } from "firebase/app";
 function sayHello() {
 
 }
+
 // document.addEventListener('DOMContentLoaded', sayHello);
 import { onAuthReady } from "/src/authentication.js";
 import { db } from "/src/firebaseConfig.js";
@@ -25,6 +26,9 @@ function showName() {
     // Get the DOM element where the user's name will be displayed
     // Example: <h1 id="name-goes-here"></h1>
     const nameElement = document.getElementById("name-goes-here");
+
+    const d = (date = new Date()) => date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+    console.log(d(new Date()));
 
     // Wait until Firebase Auth finishes checking the user's auth state
     onAuthReady(async (user) => {
@@ -52,6 +56,28 @@ function showName() {
 }
 
 showName();
+
+function greetUser() {
+    const greetingElement = document.getElementById("greeting-goes-here");
+    if (greetingElement) {
+        const now = new Date();
+        const hours = now.getHours();
+        let greeting;
+
+        if (hours >= 6 && hours < 12) {
+            greeting = "Good morning, ";
+        } else if (hours >= 12 && hours < 18) {
+            greeting = "Good afternoon, ";
+        } else {
+            greeting = "Good evening, ";
+        }
+
+        greetingElement.textContent = greeting;
+    }  
+
+}
+
+greetUser();
 
 // ---------------------------------------------------------------
 // Daily puzzles
