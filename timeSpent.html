@@ -16,12 +16,14 @@
   <main class="container">
     <section class="page-card">
       <h1 class="h3">Time spent today</h1>
-      <!-- placeholder: fill #time-spent from JS/Firestore -->
+      <!-- filled from Firestore by src/timeSpent.js -->
       <p id="time-spent" class="big-number">0h 00m</p>
-      <p class="text-body-secondary">Time spent scrolling today</p>
+      <p class="text-body-secondary">Time spent puzzling instead of scrolling</p>
+      <p>All-time total: <strong id="total-time">0h 00m</strong></p>
       <div class="placeholder-box">Weekly time chart goes here</div>
     </section>
   </main>
+  <script type="module" src="/src/timeSpent.js"></script>
 
   <div class="container">
     <footer class="d-flex justify-content-between align-items-center py-3 my-4 border-top">
