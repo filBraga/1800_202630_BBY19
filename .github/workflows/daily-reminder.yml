@@ -1,0 +1,22 @@
+# Runs scripts/sendReminders.js once an hour. The script itself decides whose
+# local time is 6pm. Free for public repos; private repos get a monthly free
+# allowance that hourly runs stay well inside.
+# name: Daily reminder
+
+# on:
+#   schedule:
+#     - cron: "0 * * * *" # minute 0 of every hour. GitHub cron is always UTC.
+#   workflow_dispatch: # adds a "Run workflow" button so you can test by hand
+
+# jobs:
+#   send:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#       - run: npm ci
+#       - run: node scripts/sendReminders.js
+#         env:
+#           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

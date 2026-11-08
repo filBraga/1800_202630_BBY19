@@ -1,5 +1,6 @@
 // <site-navbar></site-navbar> — the logged-in menu, shared by every logged-in page.
 import { logoutUser } from "/src/authentication.js";
+import { onAuthReady } from "/src/authentication.js";
 
 const LINKS = [
   ["main.html", "Home"],
@@ -10,8 +11,16 @@ const LINKS = [
   ["#progress", "My progress"],
 ];
 
+function loginCheck() {
+ onAuthReady(async (user) => {
+   if (!user) {
+            location.href = "login.html";
+            return;}
+ })}
+loginCheck();
 class SiteNavbar extends HTMLElement {
   connectedCallback() {
+    
     const page = location.pathname.split("/").pop();
     const items = LINKS.map(([href, label]) => {
       const current = href === page ? ' active" aria-current="page' : "";
