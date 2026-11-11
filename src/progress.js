@@ -7,12 +7,14 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   doc,
   setDoc,
   increment,
   serverTimestamp,
 } from "firebase/firestore";
 // same module sudoku.js loads, so there's only one Bootstrap instance on the page
+import { dateKey, nextStreak } from "./streakUtils.js";
 import { Modal } from "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const display = document.getElementById("timer-display");
@@ -77,10 +79,18 @@ document.addEventListener("puzzle-solved", async (event) => {
       seconds,
       solvedAt: serverTimestamp(),
     });
-    // merge: works even if the user doc is missing totalPuzzleSeconds (or missing entirely)
+    const userRef = doc(db, "users", user.uid);
+    const data = (await getDoc(userRef)).data() || {};
+    const streak = nextStreak(data);
+    // merge: works even if the user doc is missing these fields (or missing entirely)
     await setDoc(
-      doc(db, "users", user.uid),
-      { totalPuzzleSeconds: increment(seconds) },
+      userRef,
+      {
+        totalPuzzleSeconds: increment(seconds),
+        streak,
+        bestStreak: Math.max(streak, data.bestStreak || 0),
+        lastPlayedDate: dateKey(),
+      },
       { merge: true },
     );
     statusMsg.textContent = `Saved ${seconds}s. Nice work!`;
