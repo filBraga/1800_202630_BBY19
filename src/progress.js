@@ -6,11 +6,14 @@ import { auth, db } from "./firebaseConfig.js";
 import {
   collection,
   addDoc,
+  getDocs,
   doc,
   setDoc,
   increment,
   serverTimestamp,
 } from "firebase/firestore";
+// same module sudoku.js loads, so there's only one Bootstrap instance on the page
+import { Modal } from "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const display = document.getElementById("timer-display");
 const startBtn = document.getElementById("timer-start");
@@ -85,6 +88,19 @@ document.addEventListener("puzzle-solved", async (event) => {
     console.error("Error saving puzzle time:", error);
     statusMsg.textContent = "Couldn't save your time (check your connection or Firestore rules).";
   }
+});
+
+// Encouraging message after every puzzle; works logged out too.
+document.addEventListener("puzzle-solved", async () => {
+  let text = "Nice work! That's time well spent off the feed.";
+  try {
+    const snap = await getDocs(collection(db, "messages"));
+    if (!snap.empty) text = snap.docs[Math.floor(Math.random() * snap.size)].data().text || text;
+  } catch (error) {
+    console.error("Error loading messages:", error);
+  }
+  document.getElementById("motivation-message").textContent = text;
+  Modal.getOrCreateInstance("#motivation-modal").show();
 });
 
 render();
