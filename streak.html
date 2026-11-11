@@ -16,7 +16,6 @@
   <main class="container">
     <section class="page-card">
       <h1 class="h3">Daily streak</h1>
-      <!-- placeholder: fill #streak-count from JS/Firestore -->
       <p id="streak-count" class="big-number">0</p>
       <p class="text-body-secondary">days in a row</p>
       <div class="streak-days">
@@ -28,10 +27,11 @@
         <span class="streak-day">S</span>
         <span class="streak-day">S</span>
       </div>
-      <div class="placeholder-box">Best streak: --</div>
+      <div id="best-streak" class="placeholder-box">Best streak: --</div>
       <div class="placeholder-box">Rewards / badges go here</div>
     </section>
   </main>
+  <script type="module" src="/src/streak.js"></script>
 
   <div class="container">
     <footer class="d-flex justify-content-between align-items-center py-3 my-4 border-top">
