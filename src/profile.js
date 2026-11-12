@@ -35,7 +35,13 @@ onAuthReady(async function (user) {
         fields.forEach((field) => {
             document.getElementById(field + "Input").value = data[field] || "";
         });
-        // 4. NOW favourites is filled, so draw the cards
+        // 4. Notification settings (default to 6pm, matching the reminder sender)
+        document.getElementById("notificationsEnabledInput").checked =
+            data.notificationsEnabled === true;
+        document.getElementById("reminderTimeInput").value =
+            data.reminderTime || "18:00";
+
+        // 5. NOW favourites is filled, so draw the cards
         displayFavourites();
     }
 });
@@ -189,23 +195,85 @@ async function displayFavourites() {
 //     }
 // }
 
-// Saves the user's preferred notification reminder time to Firestore, along with their time zone.
-async function saveReminderTime(timeString) {
+// Saves the user's notification settings to Firestore: the on/off flag, the
+// preferred reminder time ("HH:MM", 24-hour, as given by <input type="time">),
+// and their time zone so the sender can work out when that time is for them.
+// Returns true on success, false on failure.
+async function saveReminderTime(timeString, enabled) {
     // waitForUser() only exists inside push-notification.js (and isn't exported),
     // but onAuthReady above already stores the signed-in user in `currentUser`.
     const user = currentUser;
-    if (!user) return;
+    if (!user) return false;
+
+    const settings = {
+        notificationsEnabled: enabled,
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+    // Only overwrite the stored time when the user actually picked one.
+    if (timeString) settings.reminderTime = timeString;
 
     try {
-        await setDoc(
-            doc(db, "users", user.uid),
-            {
-                reminderTime: timeString,
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            },
-            { merge: true },
-        );
+        await setDoc(doc(db, "users", user.uid), settings, { merge: true });
+        return true;
     } catch (error) {
         console.error("Could not save reminder time:", error);
+        return false;
     }
 }
+
+// Shows a Bootstrap alert in the Notifications card. type: success | warning | danger
+function showNotificationAlert(message, type = "success") {
+    const box = document.getElementById("notificationAlert");
+    box.className = `alert alert-${type}`; // replaces d-none, so the alert becomes visible
+    box.textContent = message;
+}
+
+// ---- What to do when the notifications form is submitted ----
+async function saveNotificationSettings(event) {
+    event.preventDefault();
+
+    const toggle = document.getElementById("notificationsEnabledInput");
+    const timeValue = document.getElementById("reminderTimeInput").value;
+    const saveBtn = document.getElementById("saveNotificationsBtn");
+
+    if (toggle.checked && !timeValue) {
+        showNotificationAlert("Please pick a reminder time.", "warning");
+        return;
+    }
+
+    saveBtn.disabled = true; // permission prompt + network can take a moment
+    try {
+        if (toggle.checked) {
+            // Turning ON needs the browser's permission and a device token, or the
+            // sender has nobody to send to. Loaded on demand because push-notification.js
+            // throws on load in browsers without push support.
+            const { requestPermissionAndGetToken } = await import("./push-notification.js");
+            const token = await requestPermissionAndGetToken();
+            if (!token) {
+                toggle.checked = false;
+                showNotificationAlert(
+                    "Notifications are blocked or unsupported in this browser, so reminders are off.",
+                    "warning",
+                );
+                return;
+            }
+        }
+
+        const saved = await saveReminderTime(timeValue, toggle.checked);
+        if (saved) {
+            showNotificationAlert(
+                toggle.checked
+                    ? `Reminders on. We'll nudge you around ${timeValue}.`
+                    : "Reminders turned off.",
+            );
+        } else {
+            showNotificationAlert("Couldn't save your settings. Please try again.", "danger");
+        }
+    } finally {
+        saveBtn.disabled = false;
+    }
+}
+
+document
+    .getElementById("notificationForm")
+    .addEventListener("submit", saveNotificationSettings);
