@@ -4,14 +4,15 @@
 // It is NOT browser code: it runs in Node with the Firebase ADMIN SDK, which
 // can read every user's document and send push messages.
 //
-// For each user with notifications on, it asks "is it 6pm where this user is
-// right now, and have we already reminded them today?" If yes, it sends.
+// For each user with notifications on, it asks "is it the hour this user chose
+// (users/{uid}.reminderTime, set on the profile page) where they are right now,
+// and have we already reminded them today?" If yes, it sends.
 // ---------------------------------------------------------------------
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore, FieldValue } from "firebase-admin/firestore";
 import { getMessaging } from "firebase-admin/messaging";
 
-const REMINDER_HOUR = 18; // 6pm, in 24-hour time
+const DEFAULT_REMINDER_HOUR = 18; // 6pm, in 24-hour time. Used when a user never picked a time.
 // PLACEHOLDER: the address of your deployed site, opened when the user clicks the notification.
 const SITE_URL = "";
 
@@ -28,6 +29,14 @@ function localHour(timeZone, now) {
   return Number(
     new Intl.DateTimeFormat("en-US", { timeZone, hour: "numeric", hourCycle: "h23" }).format(now)
   );
+}
+
+// The hour (0-23) this user wants their reminder. reminderTime is saved by the
+// profile page as "HH:MM" (24-hour), e.g. "07:30" -> 7. The job runs hourly, so
+// only the hour is used. Anything missing or malformed falls back to the default.
+function reminderHour(user) {
+  const hour = Number(String(user.reminderTime ?? "").split(":")[0]);
+  return Number.isInteger(hour) && hour >= 0 && hour <= 23 ? hour : DEFAULT_REMINDER_HOUR;
 }
 
 // Gives the user's local calendar date as "2026-11-07". The "en-CA" locale
@@ -74,8 +83,8 @@ async function main() {
     // Skip anyone we can't send to or whose time zone we don't know.
     if (tokens.length === 0 || !timeZone) continue;
 
-    // Not 6pm for this user yet (or anymore): skip.
-    if (localHour(timeZone, now) !== REMINDER_HOUR) continue;
+    // Not the user's chosen hour yet (or anymore): skip.
+    if (localHour(timeZone, now) !== reminderHour(user)) continue;
 
     // Already reminded today (this guards against the job running twice): skip.
     const today = localDate(timeZone, now);
@@ -130,12 +139,12 @@ main().catch((error) => {
 //3. Add it as a GitHub secret: in your repo, go to Settings, then Secrets and variables, then Actions, then New repository secret. Name it FIREBASE_SERVICE_ACCOUNT and paste the whole JSON file contents. Then delete the downloaded file.
 //4. Set SITE_URL in scripts/sendReminders.js to your deployed address. It's currently a placeholder.
 //5. Re-enable notifications once. Click your button again while signed in so your existing user doc gets its timeZone field. Users saved earlier don't have one yet, and the script skips them.
-//6. Test it: temporarily change REMINDER_HOUR to your current local hour, push, and use Actions, then Daily reminder, then "Run workflow". Change it back to 18 afterwards.
+//6. Test it: on the profile page set your reminder time to your current local hour and save, then use Actions, then Daily reminder, then "Run workflow". (If lastReminderDate on your user doc is already today, delete that field first or the script will skip you.)
 
 
 //Limits to know about
 
-//- Timing is approximate. GitHub's scheduler can run late. Because the job runs hourly, a user gets their reminder sometime during the 6pm hour, not at exactly 6:00.
+//- Timing is approximate. GitHub's scheduler can run late. Because the job runs hourly, a user gets their reminder sometime during their chosen hour, not at exactly that minute (a 6:45pm choice is sent in the 6pm hour).
 //- GitHub pauses scheduled workflows after 60 days with no repo activity. Any push to the repo reactivates them.
 //- The workflow file must be on the default branch (main) for the schedule to fire.
 //- Private repos have a monthly free allowance of minutes. Hourly runs are short, so they should fit comfortably. Public repos have no such limit.
