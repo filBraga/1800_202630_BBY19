@@ -7,6 +7,7 @@ const LINKS = [
   ["timeSpent.html", "Time Spent"],
   ["motivation.html", "Motivation"],
   ["streak.html", "Daily Streak"],
+  ["social.html", "Friends"],
   ["#break-ideas", "Break ideas"],
   ["#progress", "My progress"],
 ];

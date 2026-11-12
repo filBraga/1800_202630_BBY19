@@ -66,9 +66,12 @@ export async function signupUser(name, email, password) {
     // Create a Firestore document for the new user with default values
     await setDoc(doc(db, "users", user.uid), {
       name: name,
-      email: email,
+      email: user.email.toLowerCase(), // lowercase so friends can find this user by email
       country: "Canada", // Default value
     });
+    // Public email -> uid lookup so others can send this user a friend request
+    // without being able to read their user doc (see firestore.rules).
+    await setDoc(doc(db, "userLookup", user.email.toLowerCase()), { uid: user.uid, name });
     console.log("Firestore user document created successfully!");
 } catch (error) {
   // Information for debugging: show the error code  
