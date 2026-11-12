@@ -12,6 +12,12 @@
   <script type="module" src="/src/components/siteNavbar.js"></script>
   <div class="d-flex justify-content-center align-items-center flex-column gap-5 min-vh-100">
     <div class="text-center">
+      <label for="difficulty-select" class="form-label">Difficulty</label>
+      <select id="difficulty-select" class="form-select w-auto mx-auto mb-3" disabled>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
       <div id="timer-display" class="fs-2 fw-bold" aria-live="polite">00:00</div>
       <div class="d-flex gap-2 justify-content-center">
         <button id="timer-start" class="btn btn-success">Start</button>
@@ -35,6 +41,20 @@
       <button class="btn btn-light border rounded-0">7</button>
       <button class="btn btn-light border rounded-0">8</button>
       <button class="btn btn-light border rounded-0">9</button>
+    </div>
+  </div>
+  <div class="modal fade" id="motivation-modal" tabindex="-1" aria-labelledby="motivation-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="motivation-title">Your motivation</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="motivation-message"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thanks</button>
+        </div>
+      </div>
     </div>
   </div>
   <nav class="app-navbar" aria-label="Main navigation">
