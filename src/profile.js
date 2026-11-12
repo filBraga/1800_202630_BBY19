@@ -241,12 +241,10 @@ async function saveNotificationSettings(event) {
         return;
     }
 
-    saveBtn.disabled = true; // permission prompt + network can take a moment
+    saveBtn.disabled = true;
     try {
         if (toggle.checked) {
-            // Turning ON needs the browser's permission and a device token, or the
-            // sender has nobody to send to. Loaded on demand because push-notification.js
-            // throws on load in browsers without push support.
+            // Turning ON requires the browser's permission and a device token
             const { requestPermissionAndGetToken } = await import("./push-notification.js");
             const token = await requestPermissionAndGetToken();
             if (!token) {
