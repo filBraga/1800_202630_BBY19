@@ -1,5 +1,5 @@
 // src/streak.js
-// Fills streak.html from users/{uid}: streak, bestStreak, lastPlayedDate,
+// Fills myProgress.html (streak section) from users/{uid}: streak, bestStreak, lastPlayedDate,
 // and turns this week's M..S circles green on days with a session.
 import { db } from "./firebaseConfig.js";
 import { onAuthReady } from "./authentication.js";

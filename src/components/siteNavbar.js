@@ -4,11 +4,9 @@ import { onAuthReady } from "/src/authentication.js";
 
 const LINKS = [
   ["main.html", "Home"],
-  ["timeSpent.html", "Time Spent"],
+  ["myProgress.html", "My progress"],
   ["motivation.html", "Motivation"],
-  ["streak.html", "Daily Streak"],
   ["#break-ideas", "Break ideas"],
-  ["#progress", "My progress"],
 ];
 
 function loginCheck() {

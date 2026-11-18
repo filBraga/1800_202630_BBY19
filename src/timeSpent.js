@@ -1,5 +1,5 @@
 // src/timeSpent.js
-// Fills timeSpent.html with today's puzzle time, a 7-day bar chart (both from
+// Fills myProgress.html (time section) with today's puzzle time, a 7-day bar chart (both from
 // the last 7 days of sessions) and the all-time total (users/{uid}.totalPuzzleSeconds).
 import { db } from "./firebaseConfig.js";
 import { onAuthReady } from "./authentication.js";

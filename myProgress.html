@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Doomscroll - Time Spent</title>
+  <title>Doomscroll - My Progress</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -14,16 +14,36 @@
   <script type="module" src="/src/components/siteNavbar.js"></script>
 
   <main class="container">
+    <h1 class="h3 mt-3">My progress</h1>
+
+    <!-- filled by src/streak.js -->
     <section class="page-card">
-      <h1 class="h3">Time spent today</h1>
-      <!-- filled from Firestore by src/timeSpent.js -->
+      <h2 class="h4">Daily streak</h2>
+      <p id="streak-count" class="big-number">0</p>
+      <p class="text-body-secondary">days in a row</p>
+      <div class="streak-days">
+        <span class="streak-day">M</span>
+        <span class="streak-day">T</span>
+        <span class="streak-day">W</span>
+        <span class="streak-day">T</span>
+        <span class="streak-day">F</span>
+        <span class="streak-day">S</span>
+        <span class="streak-day">S</span>
+      </div>
+      <div id="best-streak" class="placeholder-box">Best streak: --</div>
+    </section>
+
+    <!-- filled by src/timeSpent.js -->
+    <section class="page-card">
+      <h2 class="h4">Time spent today</h2>
       <p id="time-spent" class="big-number">0h 00m</p>
       <p class="text-body-secondary">Time spent puzzling instead of scrolling</p>
       <p>All-time total: <strong id="total-time">0h 00m</strong></p>
-      <h2 class="h5 mt-4">Last 7 days</h2>
+      <h3 class="h5 mt-4">Last 7 days</h3>
       <div id="weekly-chart"></div>
     </section>
   </main>
+  <script type="module" src="/src/streak.js"></script>
   <script type="module" src="/src/timeSpent.js"></script>
 
   <div class="container">
