@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App" />
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Other libraries go here -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet" /> -->
+  <link href="./styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!------------------------------>
+  <!-- Your HTML Layout go here -->
+  <!------------------------------>
+  <!-- Stuff for body goes here -->
+
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
+
+  <site-navbar></site-navbar>
+  <script type="module" src="/src/components/siteNavbar.js"></script>
+
+
+  <main-content>
+    <div class="rules-container">
+    <h1 class="rules-title">What is Sudoku and what are the rules of this game?</h1>
+    <ul class="rules">
+      <li>Sudoku grid consists of 9x9 spaces.</li>
+      <li>You can use only numbers from 1 to 9.</li>
+      <li>Each 3×3 block can only contain numbers from 1 to 9.</li>
+      <li>Each vertical column can only contain numbers from 1 to 9.</li>
+      <li>Each horizontal row can only contain numbers from 1 to 9.</li>
+      <li>Each number in the 3×3 block, vertical column or horizontal row can be used only once.</li>
+      <li>The game is over when the whole Sudoku grid is correctly filled with numbers.</li>
+    </ul>
+    </div>
+    <div class="rules-container">
+      <h1 class="rules-title">Helpful Tips for Solving Sudoku</h1>
+      <ul class="rules">
+        <li>Start with the numbers that appear most frequently.</li>
+        <li>Look for rows, columns, or blocks that have several numbers filled in.</li>
+        <li>Use the process of elimination to determine which numbers can go in each empty space.</li>
+        <li>Try not to guess. Use logic to deduce the correct numbers and utilize the pencil tool when there are multiple possibilities.</li>
+      </ul>
+    </div>
+  </main-content>
+
+
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">© 2026 BBY19 Burnaby</p>
+      <a href="/"
+        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        aria-label="Bootstrap">
+        <svg class="bi me-2" width="40" height="32" aria-hidden="true">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+     <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a href="main.html" class="nav-link px-2 text-body-secondary">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="profile.html" class="nav-link px-2 text-body-secondary">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="sudoku.html" class="nav-link px-2 text-body-secondary">Puzzles</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="gameRules.html" class="nav-link px-2 text-body-secondary">Game Rules</a>
+        </li>
+        <li>
+          <button id="enable-notifications" type="button">Click to receive notifications</button>
+        </li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

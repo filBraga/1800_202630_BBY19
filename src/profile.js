@@ -14,6 +14,7 @@ import {
 
 // The fields we store in Firestore (email comes from Auth, not from here)
 const fields = ["name", "country", "school", "bio"];
+const DIFFICULTIES = ["easy", "medium", "hard"];
 let currentUser = null;
 let favourites = []; // used in Part 3
 
@@ -41,7 +42,15 @@ onAuthReady(async function (user) {
         document.getElementById("reminderTimeInput").value =
             data.reminderTime || "18:00";
 
-        // 5. NOW favourites is filled, so draw the cards
+        // 5. Difficulty preference (same field the sudoku page's dropdown uses).
+        // Stays disabled until now so a slow load can't clobber a new choice.
+        const difficultyInput = document.getElementById("difficultyInput");
+        if (DIFFICULTIES.includes(data.difficulty)) {
+            difficultyInput.value = data.difficulty;
+        }
+        difficultyInput.disabled = false;
+
+        // 6. NOW favourites is filled, so draw the cards
         displayFavourites();
     }
 });
@@ -275,3 +284,36 @@ async function saveNotificationSettings(event) {
 document
     .getElementById("notificationForm")
     .addEventListener("submit", saveNotificationSettings);
+
+// ---- What to do when the difficulty form is submitted ----
+// Saves to users/{uid}.difficulty, which main.js reads to pick the daily puzzle.
+async function saveDifficulty(event) {
+    event.preventDefault();
+
+    const select = document.getElementById("difficultyInput");
+    const saveBtn = document.getElementById("saveDifficultyBtn");
+    const box = document.getElementById("difficultyAlert");
+
+    if (!currentUser) return;
+
+    saveBtn.disabled = true;
+    try {
+        await setDoc(
+            doc(db, "users", currentUser.uid),
+            { difficulty: select.value },
+            { merge: true },
+        );
+        box.className = "alert alert-success";
+        box.textContent = `Daily puzzle difficulty set to ${select.value}.`;
+    } catch (error) {
+        console.error("Could not save difficulty:", error);
+        box.className = "alert alert-danger";
+        box.textContent = "Couldn't save your difficulty. Please try again.";
+    } finally {
+        saveBtn.disabled = false;
+    }
+}
+
+document
+    .getElementById("difficultyForm")
+    .addEventListener("submit", saveDifficulty);

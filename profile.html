@@ -101,14 +101,37 @@
             </div>
         </div>
 
-        <!-- Section 3: My favourite puzzles -->
-        <h2 class="h5 mb-3"><i class="bi bi-heart-fill text-danger me-1"></i>My favourite puzzles</h2>
-        <div id="puzzles-go-here" class="row row-cols-1 row-cols-md-2 g-3"></div>
+        <!-- Section 3: Puzzle preferences -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-body">
+                <h2 class="h5 card-title mb-3"><i class="bi bi-sliders me-1"></i>Puzzle preferences</h2>
+                <div id="difficultyAlert" class="alert d-none" role="alert"></div>
+
+                <form id="difficultyForm" novalidate>
+                    <div class="mb-3">
+                        <label for="difficultyInput" class="form-label">Daily puzzle difficulty</label>
+                        <select id="difficultyInput" class="form-select" disabled>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                        <div class="form-text">Your daily puzzle on the home page will match this difficulty.</div>
+                    </div>
+                    <button type="submit" id="saveDifficultyBtn" class="btn btn-success">
+                        <i class="bi bi-check-lg me-1"></i>Save
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Section 4: My favourite puzzles -->
+        <!-- <h2 class="h5 mb-3"><i class="bi bi-heart-fill text-danger me-1"></i>My favourite puzzles</h2>
+        <div id="puzzles-go-here" class="row row-cols-1 row-cols-md-2 g-3"></div> -->
 
     </main>
 
   <!-- Card template for the favourites list (same structure as the one in main.html) -->
-  <template id="puzzleCardTemplate">
+  <!-- <template id="puzzleCardTemplate">
     <div class="col">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
@@ -119,7 +142,7 @@
         </div>
       </div>
     </div>
-  </template>
+  </template> -->
 
   <!-- Profile logic. Must come after the markup it reads; type="module" also defers it. -->
   <script type="module" src="/src/profile.js"></script>
@@ -137,19 +160,22 @@
       </a>
       <ul class="nav col-md-4 justify-content-end">
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
+          <a href="main.html" class="nav-link px-2 text-body-secondary">Home</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Puzzles</a>
+          <a href="profile.html" class="nav-link px-2 text-body-secondary">Profile</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">Daily Motivation</a>
+          <a href="sudoku.html" class="nav-link px-2 text-body-secondary">Puzzles</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-body-secondary">About</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+          <a href="gameRules.html" class="nav-link px-2 text-body-secondary">Game Rules</a>
+        </li>
+        <li>
+          <button id="enable-notifications" type="button">Click to receive notifications</button>
         </li>
       </ul>
     </footer>
