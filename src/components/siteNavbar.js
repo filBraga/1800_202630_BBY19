@@ -3,31 +3,30 @@ import { logoutUser } from "/src/authentication.js";
 import { onAuthReady } from "/src/authentication.js";
 
 const LINKS = [
-  ["main.html", "Home"],
-  ["timeSpent.html", "Time Spent"],
-  ["motivation.html", "Motivation"],
-  ["streak.html", "Daily Streak"],
-  ["#break-ideas", "Break ideas"],
-  ["#progress", "My progress"],
+    ["main.html", "Home"],
+    ["timeSpent.html", "Time Spent"],
+    ["streak.html", "Daily Streak"],
+    ["social.html", "Friends"],
 ];
 
 function loginCheck() {
- onAuthReady(async (user) => {
-   if (!user) {
+    onAuthReady(async (user) => {
+        if (!user) {
             location.href = "login.html";
-            return;}
- })}
+            return;
+        }
+    });
+}
 loginCheck();
 class SiteNavbar extends HTMLElement {
-  connectedCallback() {
-    
-    const page = location.pathname.split("/").pop();
-    const items = LINKS.map(([href, label]) => {
-      const current = href === page ? ' active" aria-current="page' : "";
-      return `<li class="nav-item"><a class="nav-link${current}" href="${href}">${label}</a></li>`;
-    }).join("");
+    connectedCallback() {
+        const page = location.pathname.split("/").pop();
+        const items = LINKS.map(([href, label]) => {
+            const current = href === page ? ' active" aria-current="page' : "";
+            return `<li class="nav-item"><a class="nav-link${current}" href="${href}">${label}</a></li>`;
+        }).join("");
 
-    this.innerHTML = `
+        this.innerHTML = `
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
           <a class="navbar-brand fw-semibold" href="main.html">Doomscroll</a>
@@ -42,8 +41,8 @@ class SiteNavbar extends HTMLElement {
           </div>
         </div>
       </nav>`;
-    this.querySelector(".logout-btn").addEventListener("click", logoutUser);
-  }
+        this.querySelector(".logout-btn").addEventListener("click", logoutUser);
+    }
 }
 
 customElements.define("site-navbar", SiteNavbar);
