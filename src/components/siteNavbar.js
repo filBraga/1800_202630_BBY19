@@ -4,7 +4,6 @@ import { onAuthReady } from "/src/authentication.js";
 
 const LINKS = [
   ["main.html", "Home"],
-  ["timeSpent.html", "Time Spent"],
   ["myProgress.html", "My progress"],
   ["motivation.html", "Motivation"],
   ["social.html", "Friends"],
