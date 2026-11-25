@@ -77,3 +77,93 @@
   border: 1px solid black;
   border-radius: 50%;
 }
+
+.rules-container {
+      -webkit-text-size-adjust: 100%;
+    --bg_color_top: #ffcf00;
+    --bg_color_bottom: #ff6106;
+    --event_shadow_color: #000;
+    --tc-btn-shadow-color: #00000033;
+    --tc-main-color: #009f27;
+    --tc-bg-color: #f3f6fa;
+    --tc-gradient-color: #344861;
+    --tc-gradient-hover-color: #344861;
+    --tc-blue: #00781e;
+    --tc-blue-50: rgba(245, 249, 255, 1);
+    --tc-blue-100: rgba(208, 225, 253, 1);
+    --tc-surface-600: rgba(117, 117, 117, 1);
+    --tc-text-color: #6e7c8c;
+    --tc-link-color: #344861;
+    --tc-repop-bg-color: #E9E9FF;
+    --tc-repop-color: #763CAD;
+    --tc-font-family: 'Hauss', sans-serif;
+    --vh: 944px;
+    --vw: 1638px;
+    --mg: 0px;
+    --mobile-menu-bottom: 187.57144165039062px;
+    --cmp-banner-bottom: 188.57144165039062px;
+    --postcards-gradient-start: #add800;
+    --postcards-gradient-start-rgb: 173, 216, 0;
+    --postcards-gradient-end-rgb: 0, 159, 0;
+    --postcards-gradient-end: #009f00;
+    cursor: default;
+    font-family: Hauss,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,.12);
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.63;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.rules-title{
+  text-align: center;
+  margin: 15px;
+}
+.rules {
+    -webkit-text-size-adjust: 100%;
+    --bg_color_top: #ffcf00;
+    --bg_color_bottom: #ff6106;
+    --event_shadow_color: #000;
+    --tc-btn-shadow-color: #00000033;
+    --tc-main-color: #009f27;
+    --tc-bg-color: #f3f6fa;
+    --tc-gradient-color: #344861;
+    --tc-gradient-hover-color: #344861;
+    --tc-blue: #00781e;
+    --tc-blue-50: rgba(245, 249, 255, 1);
+    --tc-blue-100: rgba(208, 225, 253, 1);
+    --tc-surface-600: rgba(117, 117, 117, 1);
+    --tc-text-color: #6e7c8c;
+    --tc-link-color: #344861;
+    --tc-repop-bg-color: #E9E9FF;
+    --tc-repop-color: #763CAD;
+    --tc-font-family: 'Hauss', sans-serif;
+    --vh: 944px;
+    --vw: 1638px;
+    --mg: 0px;
+    --mobile-menu-bottom: 151.57144165039062px;
+    --cmp-banner-bottom: 152.57144165039062px;
+    --postcards-gradient-start: #add800;
+    --postcards-gradient-start-rgb: 173, 216, 0;
+    --postcards-gradient-end-rgb: 0, 159, 0;
+    --postcards-gradient-end: #009f00;
+    cursor: default;
+    font-family: Hauss,sans-serif;
+    -webkit-tap-highlight-color: rgba(0,0,0,.12);
+    color: #6e7c8c;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.63;
+    background-color: #f3f6fa;
+    border-radius: 5px;
+    display: block;
+    list-style: disc outside;
+    margin: 20px 0 0;
+    padding: 20px 20px 20px 33px;
+
+}
