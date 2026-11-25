@@ -6,6 +6,149 @@ import "../styles/sudoku.css";
 const SUDOKU_GRID_WIDTH = 9;
 const SUDOKU_GRID_HEIGHT = 9;
 
+function getDifficulty() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("difficulty");
+}
+
+const isValidPlacement = (board, row, col, num) => {
+    // Check row
+    for (let j = 0; j < SUDOKU_GRID_WIDTH; j++) {
+        if (board[row][j] === num) return false;
+    }
+
+    // Check column
+    for (let i = 0; i < SUDOKU_GRID_HEIGHT; i++) {
+        if (board[i][col] === num) return false;
+    }
+
+    // Check subgrid
+    const boxWidth = Math.sqrt(SUDOKU_GRID_WIDTH);
+    const boxHeight = Math.sqrt(SUDOKU_GRID_HEIGHT);
+
+    const boxRow = Math.floor(row / boxHeight) * boxHeight;
+    const boxCol = Math.floor(col / boxWidth) * boxWidth;
+
+    for (let i = boxRow; i < boxRow + boxHeight; i++) {
+        for (let j = boxCol; j < boxCol + boxWidth; j++) {
+            if (board[i][j] === num) return false;
+        }
+    }
+
+    return true;
+};
+
+// ----------------------------------------
+// Count Sudoku solutions
+// ----------------------------------------
+
+const countSolutions = (board, limit = 2) => {
+    const findEmptyCell = () => {
+        for (let i = 0; i < SUDOKU_GRID_HEIGHT; i++) {
+            for (let j = 0; j < SUDOKU_GRID_WIDTH; j++) {
+                if (board[i][j] === "") {
+                    return [i, j];
+                }
+            }
+        }
+
+        return null;
+    };
+
+    const emptyCell = findEmptyCell();
+
+    if (!emptyCell) return 1;
+
+    const [row, col] = emptyCell;
+    let count = 0;
+
+    for (let num = 1; num <= SUDOKU_GRID_WIDTH; num++) {
+        if (isValidPlacement(board, row, col, num)) {
+            const nextBoard = board.map((r) => [...r]);
+
+            nextBoard[row][col] = num;
+
+            count += countSolutions(nextBoard, limit - count);
+
+            if (count >= limit) return count;
+        }
+    }
+
+    return count;
+};
+
+// ----------------------------------------
+// Shuffle array (Fisher-Yates)
+// ----------------------------------------
+
+const shuffle = (array, random = Math.random) =>
+    array.reduce(
+        (result, _, i) => {
+            const j = i + Math.floor(random() * (array.length - i));
+
+            const temp = result[i];
+            result[i] = result[j];
+            result[j] = temp;
+
+            return result;
+        },
+        [...array],
+    );
+
+// ----------------------------------------
+// Generate Sudoku puzzle
+// ----------------------------------------
+
+const generatePuzzle = (board, difficulty = "medium", random = Math.random) => {
+    const percentages = {
+        easy: 0.3,
+        medium: 0.5,
+        hard: 0.7,
+    };
+
+    if (!Object.hasOwn(percentages, difficulty)) {
+        throw new Error("Invalid difficulty");
+    }
+
+    if (countSolutions(board) !== 1) {
+        throw new Error("Input board must have exactly one solution");
+    }
+
+    const puzzle = board.map((row) => [...row]);
+
+    const cells = Array.from(
+        { length: SUDOKU_GRID_WIDTH * SUDOKU_GRID_HEIGHT },
+        (_, index) => [
+            Math.floor(index / SUDOKU_GRID_WIDTH),
+            index % SUDOKU_GRID_WIDTH,
+        ],
+    );
+
+    const shuffledCells = shuffle(cells, random);
+
+    const targetRemovals = Math.floor(cells.length * percentages[difficulty]);
+
+    let removed = 0;
+
+    for (const [row, col] of shuffledCells) {
+        if (removed >= targetRemovals) break;
+
+        const originalValue = puzzle[row][col];
+
+        puzzle[row][col] = "";
+
+        if (countSolutions(puzzle) === 1) {
+            removed++;
+        } else {
+            puzzle[row][col] = originalValue;
+        }
+    }
+
+    return puzzle;
+};
+
+const isValidPuzzle = (board) => countSolutions(board) === 1;
+
 // someone make it suck less where possible
 function generateSudokuBoard() {
     const size = 9;
@@ -115,7 +258,8 @@ const numberButtons = document.getElementById("numbers");
 
 // Store the state of all 81 cells
 const cells = [];
-const numbers = generateSudokuBoard();
+const boardNumbers = generateSudokuBoard();
+const boardPuzzle = generatePuzzle(boardNumbers, getDifficulty());
 
 // Create Sudoku board
 for (let i = 0; i < 81; i++) {
@@ -124,7 +268,7 @@ for (let i = 0; i < 81; i++) {
 
     const actualNumber = document.createElement("span");
     actualNumber.classList.add("actual-number");
-    actualNumber.innerText = numbers[Math.floor(i / 9)][i % 9];
+    actualNumber.innerText = boardPuzzle[Math.floor(i / 9)][i % 9];
 
     const candidatesContainer = document.createElement("div");
     candidatesContainer.classList.add("candidates");

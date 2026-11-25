@@ -81,3 +81,71 @@
       <script type="module" src="./src/progress.js"></script>
     </body>
   </html>
+        <div id="timer-status" class="small mt-2" role="status"></div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <!--<div id="sudoku-board" class="d-grid">-->
+        <!--</div>-->
+        <div id="board"></div>
+        <div id="controls">
+          <div id="mode-controls">
+            <button id="normal-button" class="active">
+              Normal
+            </button>
+            <button id="pencil-button">
+              ✏ Pencil
+            </button>
+            <button id="erase-button">
+              Erase
+            </button>
+          </div>
+          <button id="validate-button">
+            Validate
+          </button>
+          <div id="numbers"></div>
+        </div>
+      </div>
+      <!--<div id="number-pad" class="d-grid">-->
+      <!--  <button class="btn btn-light border rounded-0">1</button>-->
+      <!--  <button class="btn btn-light border rounded-0">2</button>-->
+      <!--  <button class="btn btn-light border rounded-0">3</button>-->
+      <!--  <button class="btn btn-light border rounded-0">4</button>-->
+      <!--  <button class="btn btn-light border rounded-0">5</button>-->
+      <!--  <button class="btn btn-light border rounded-0">6</button>-->
+      <!--  <button class="btn btn-light border rounded-0">7</button>-->
+      <!--  <button class="btn btn-light border rounded-0">8</button>-->
+      <!--  <button class="btn btn-light border rounded-0">9</button>-->
+      <!--</div>-->
+    </div>
+    <div class="modal fade" id="motivation-modal" tabindex="-1" aria-labelledby="motivation-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="motivation-title">Your motivation</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="motivation-message"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thanks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<nav class="app-navbar" aria-label="Main navigation">-->
+    <!--  <a class="app-navbar_item" href="#social">-->
+    <!--    <span class="app-navbar_icon mdi mdi-account-multiple" aria-hidden="true"></span>-->
+    <!--    <span>Social</span>-->
+    <!--  </a>-->
+    <!--  <a class="app-navbar_item" href="main.html">-->
+    <!--    <span class="app-navbar_icon mdi mdi-home" aria-hidden="true"></span>-->
+    <!--    <span>Home</span>-->
+    <!--  </a>-->
+    <!--  <a class="app-navbar_item" href="sudoku.html" aria-current="page">-->
+    <!--    <span class="app-navbar_icon mdi mdi-puzzle" aria-hidden="true"></span>-->
+    <!--    <span>My Puzzles</span>-->
+    <!--  </a>-->
+    <!--</nav>-->
+    <script type="module" src="./src/sudoku.js"></script>
+    <script type="module" src="./src/progress.js"></script>
+  </body>
+</html>
