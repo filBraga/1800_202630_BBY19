@@ -4,21 +4,24 @@ import { onAuthReady } from "/src/authentication.js";
 
 const LINKS = [
   ["main.html", "Home"],
+  ["timeSpent.html", "Time Spent"],
   ["myProgress.html", "My progress"],
   ["motivation.html", "Motivation"],
-  ["#break-ideas", "Break ideas"],
+  ["streak.html", "Daily Streak"],
+  ["social.html", "Friends"],
 ];
 
 function loginCheck() {
- onAuthReady(async (user) => {
-   if (!user) {
-            location.href = "login.html";
-            return;}
- })}
+  onAuthReady(async (user) => {
+    if (!user) {
+      location.href = "login.html";
+      return;
+    }
+  });
+}
 loginCheck();
 class SiteNavbar extends HTMLElement {
   connectedCallback() {
-    
     const page = location.pathname.split("/").pop();
     const items = LINKS.map(([href, label]) => {
       const current = href === page ? ' active" aria-current="page' : "";
