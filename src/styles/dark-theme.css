@@ -1,0 +1,130 @@
+/*
+ * Dark mode. src/theme.js sets two attributes on <html>:
+ *   data-bs-theme="dark"            -> turns on Bootstrap 5.3's built-in dark mode
+ *   data-dark-palette="midnight|ember" -> picks one of the two colour templates below
+ *
+ * Each palette overrides Bootstrap's own CSS variables (so every Bootstrap
+ * component re-colours itself) plus three of ours (--dm-accent*) used for
+ * the primary button. The rules after the palettes patch things Bootstrap
+ * can't re-colour on its own: hard-coded utilities (.bg-light, .text-dark)
+ * and colours written directly in styles/style.css.
+ */
+
+/* ---------- Palette 1: Midnight (cool navy + sky-blue accent) ---------- */
+html[data-bs-theme="dark"][data-dark-palette="midnight"] {
+  --bs-body-color: #d7e0f0;
+  --bs-body-color-rgb: 215, 224, 240;
+  --bs-body-bg: #0f1724;
+  --bs-body-bg-rgb: 15, 23, 36;
+  --bs-emphasis-color: #f4f7fd;
+  --bs-emphasis-color-rgb: 244, 247, 253;
+  --bs-secondary-color: rgba(215, 224, 240, 0.75);
+  --bs-secondary-color-rgb: 215, 224, 240;
+  --bs-tertiary-color: rgba(215, 224, 240, 0.5);
+  --bs-tertiary-color-rgb: 215, 224, 240;
+  --bs-secondary-bg: #172033;
+  --bs-secondary-bg-rgb: 23, 32, 51;
+  --bs-tertiary-bg: #1c2740;
+  --bs-tertiary-bg-rgb: 28, 39, 64;
+  --bs-border-color: #2c3a57;
+  --bs-primary: #6ea8fe;
+  --bs-primary-rgb: 110, 168, 254;
+  --bs-link-color: #7fb0ff;
+  --bs-link-color-rgb: 127, 176, 255;
+  --bs-link-hover-color: #a5c8ff;
+  --bs-link-hover-color-rgb: 165, 200, 255;
+
+  --dm-accent: #6ea8fe;
+  --dm-accent-hover: #8bb9fe;
+  --dm-accent-text: #0f1724;
+}
+
+/* ---------- Palette 2: Ember (warm charcoal + amber accent) ---------- */
+html[data-bs-theme="dark"][data-dark-palette="ember"] {
+  --bs-body-color: #eadfd6;
+  --bs-body-color-rgb: 234, 223, 214;
+  --bs-body-bg: #1a1614;
+  --bs-body-bg-rgb: 26, 22, 20;
+  --bs-emphasis-color: #fff7ef;
+  --bs-emphasis-color-rgb: 255, 247, 239;
+  --bs-secondary-color: rgba(234, 223, 214, 0.75);
+  --bs-secondary-color-rgb: 234, 223, 214;
+  --bs-tertiary-color: rgba(234, 223, 214, 0.5);
+  --bs-tertiary-color-rgb: 234, 223, 214;
+  --bs-secondary-bg: #241e1b;
+  --bs-secondary-bg-rgb: 36, 30, 27;
+  --bs-tertiary-bg: #2d2622;
+  --bs-tertiary-bg-rgb: 45, 38, 34;
+  --bs-border-color: #43382f;
+  --bs-primary: #f0a04b;
+  --bs-primary-rgb: 240, 160, 75;
+  --bs-link-color: #f5b26b;
+  --bs-link-color-rgb: 245, 178, 107;
+  --bs-link-hover-color: #ffc98f;
+  --bs-link-hover-color-rgb: 255, 201, 143;
+
+  --dm-accent: #f0a04b;
+  --dm-accent-hover: #f5b26b;
+  --dm-accent-text: #1a1614;
+}
+
+/* ---------- Shared dark-mode fixes (both palettes) ---------- */
+
+/* Cards, modals and list rows default to the page colour, which would make
+   them invisible against the background. Lift them one step. */
+[data-bs-theme="dark"] .card {
+  --bs-card-bg: var(--bs-secondary-bg);
+}
+[data-bs-theme="dark"] .modal-content {
+  --bs-modal-bg: var(--bs-secondary-bg);
+}
+[data-bs-theme="dark"] .list-group {
+  --bs-list-group-bg: var(--bs-secondary-bg);
+}
+
+/* Bootstrap hard-codes .btn-primary colours, so re-point them at the accent. */
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-color: var(--dm-accent-text);
+  --bs-btn-bg: var(--dm-accent);
+  --bs-btn-border-color: var(--dm-accent);
+  --bs-btn-hover-color: var(--dm-accent-text);
+  --bs-btn-hover-bg: var(--dm-accent-hover);
+  --bs-btn-hover-border-color: var(--dm-accent-hover);
+  --bs-btn-active-color: var(--dm-accent-text);
+  --bs-btn-active-bg: var(--dm-accent-hover);
+  --bs-btn-active-border-color: var(--dm-accent-hover);
+  --bs-btn-disabled-color: var(--dm-accent-text);
+  --bs-btn-disabled-bg: var(--dm-accent);
+  --bs-btn-disabled-border-color: var(--dm-accent);
+}
+
+/* Utilities that stay light/dark regardless of theme. */
+[data-bs-theme="dark"] .bg-light {
+  background-color: var(--bs-secondary-bg) !important;
+}
+[data-bs-theme="dark"] .text-dark {
+  color: var(--bs-body-color) !important;
+}
+[data-bs-theme="dark"] .border-dark {
+  border-color: var(--bs-emphasis-color) !important;
+}
+
+/* Colours written directly in styles/style.css */
+[data-bs-theme="dark"] .page-card,
+[data-bs-theme="dark"] .placeholder-box,
+[data-bs-theme="dark"] .streak-day {
+  border-color: var(--bs-border-color);
+}
+[data-bs-theme="dark"] .rules-container {
+  color: var(--bs-body-color);
+}
+[data-bs-theme="dark"] .rules {
+  background-color: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
+}
+
+/* Sudoku cells get an inline white/yellow background once clicked (see
+   src/sudoku.js), so keep their digits dark or they vanish on it. */
+[data-bs-theme="dark"] #sudoku-board > div[style*="background"] {
+  color: #111;
+}
