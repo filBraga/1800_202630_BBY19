@@ -11,6 +11,8 @@ import {
   doc,
   getDoc,
   setDoc,
+  query,
+  where,
   increment,
   serverTimestamp,
 } from "firebase/firestore";
@@ -109,8 +111,24 @@ document.addEventListener("puzzle-solved", async (event) => {
     statusMsg.textContent = "Log in to save your time.";
     return;
   }
+  const compareEl = document.getElementById("solve-compare");
+  compareEl.textContent = "";
   try {
-    await addDoc(collection(db, "users", user.uid, "sessions"), {
+    // Read the previous same-difficulty session before saving this one.
+    // Sorted in JS so Firestore doesn't need a composite index.
+    const sessionsRef = collection(db, "users", user.uid, "sessions");
+    const prev = (await getDocs(query(sessionsRef, where("difficulty", "==", difficulty)))).docs
+      .map((d) => d.data())
+      .sort((a, b) => (b.solvedAt?.toMillis() ?? 0) - (a.solvedAt?.toMillis() ?? 0))[0];
+    const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+    const diff = prev ? prev.seconds - seconds : 0;
+    compareEl.textContent = !prev
+      ? `${time} - first time on ${difficulty}`
+      : diff === 0
+        ? `${time} - same as last time`
+        : `${time} - ${Math.abs(diff)} s ${diff > 0 ? "faster" : "slower"} than last time!`;
+
+    await addDoc(sessionsRef, {
       puzzle,
       difficulty,
       seconds,
