@@ -124,7 +124,28 @@
             </div>
         </div>
 
-        <!-- Section 4: My favourite puzzles -->
+        <!-- Section 4: Appearance (dark mode) -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-body">
+                <h2 class="h5 card-title mb-3"><i class="bi bi-moon-stars-fill me-1"></i>Appearance</h2>
+                <div id="themeAlert" class="alert d-none" role="alert"></div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="darkModeInput" disabled />
+                    <label class="form-check-label" for="darkModeInput">Dark mode</label>
+                </div>
+                <div class="mb-3">
+                    <label for="darkPaletteInput" class="form-label">Dark colour theme</label>
+                    <select id="darkPaletteInput" class="form-select" disabled>
+                        <option value="midnight">Midnight (cool navy)</option>
+                        <option value="ember">Ember (warm charcoal)</option>
+                    </select>
+                    <div class="form-text">Changes apply instantly and are saved to your account for every page.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: My favourite puzzles -->
         <!-- <h2 class="h5 mb-3"><i class="bi bi-heart-fill text-danger me-1"></i>My favourite puzzles</h2>
         <div id="puzzles-go-here" class="row row-cols-1 row-cols-md-2 g-3"></div> -->
 
@@ -169,13 +190,13 @@
           <a href="sudoku.html" class="nav-link px-2 text-body-secondary">Puzzles</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+          <a href="index.html" class="nav-link px-2 text-body-secondary">About</a>
         </li>
         <li class="nav-item">
           <a href="gameRules.html" class="nav-link px-2 text-body-secondary">Game Rules</a>
         </li>
         <li>
-          <button id="enable-notifications" type="button">Click to receive notifications</button>
+          <button id="enable-notifications" type="button">Click to receive Daily Reminders</button>
         </li>
       </ul>
     </footer>

@@ -35,8 +35,18 @@ function formatSeconds(seconds) {
 // before `b`, positive if after, 0 if they're equal.
 // Sessions are plain Firestore docs: { puzzle, difficulty, seconds, solvedAt?, startedAt? }
 function compareSessions(a, b) {
-    // TODO(human): decide how old puzzles are ordered in the list.
-    return 0;
+    // Newest completion first. Sessions with no completion date (started,
+    // or solvedAt not resolved yet) sort to the bottom, newest start first.
+    const solvedA = toDate(a.solvedAt)?.getTime();
+    const solvedB = toDate(b.solvedAt)?.getTime();
+
+    if (solvedA !== undefined && solvedB !== undefined) return solvedB - solvedA;
+    if (solvedA !== undefined) return -1;
+    if (solvedB !== undefined) return 1;
+
+    const startedA = toDate(a.startedAt)?.getTime() ?? 0;
+    const startedB = toDate(b.startedAt)?.getTime() ?? 0;
+    return startedB - startedA;
 }
 
 function buildRow(session) {
