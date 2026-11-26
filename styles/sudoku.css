@@ -134,3 +134,57 @@ button.active {
         font-size: 10px;
     }
 }
+/* ---------- Dark mode ----------
+ * src/theme.js sets data-bs-theme="dark" on <html>. The colours above are
+ * hard-coded for light mode, so re-point them at the active palette's
+ * Bootstrap variables (see src/styles/dark-theme.css). */
+[data-bs-theme="dark"] body {
+    background: var(--bs-body-bg);
+}
+
+[data-bs-theme="dark"] #board {
+    border-color: var(--bs-emphasis-color);
+    background: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .cell {
+    border-color: var(--bs-border-color);
+    background: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .cell:nth-child(3n) {
+    border-right-color: var(--bs-emphasis-color);
+}
+
+[data-bs-theme="dark"] .cell:nth-child(n+19):nth-child(-n+27),
+[data-bs-theme="dark"] .cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom-color: var(--bs-emphasis-color);
+}
+
+[data-bs-theme="dark"] .cell.selected {
+    background: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+[data-bs-theme="dark"] .actual-number {
+    color: var(--bs-emphasis-color);
+}
+
+[data-bs-theme="dark"] .candidates {
+    color: var(--bs-secondary-color);
+}
+
+[data-bs-theme="dark"] #controls button {
+    border-color: var(--bs-border-color);
+    background: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] #controls button:hover {
+    background: var(--bs-tertiary-bg);
+}
+
+[data-bs-theme="dark"] #controls button.active {
+    border-color: var(--bs-primary);
+    background: var(--bs-primary);
+    color: var(--bs-body-bg);
+}
