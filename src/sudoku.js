@@ -38,10 +38,6 @@ const isValidPlacement = (board, row, col, num) => {
     return true;
 };
 
-// ----------------------------------------
-// Count Sudoku solutions
-// ----------------------------------------
-
 const countSolutions = (board, limit = 2) => {
     const findEmptyCell = () => {
         for (let i = 0; i < SUDOKU_GRID_HEIGHT; i++) {
@@ -77,10 +73,6 @@ const countSolutions = (board, limit = 2) => {
     return count;
 };
 
-// ----------------------------------------
-// Shuffle array (Fisher-Yates)
-// ----------------------------------------
-
 const shuffle = (array, random = Math.random) =>
     array.reduce(
         (result, _, i) => {
@@ -94,10 +86,6 @@ const shuffle = (array, random = Math.random) =>
         },
         [...array],
     );
-
-// ----------------------------------------
-// Generate Sudoku puzzle
-// ----------------------------------------
 
 const generatePuzzle = (board, difficulty = "medium", random = Math.random) => {
     const percentages = {
