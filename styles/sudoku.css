@@ -9,6 +9,15 @@ h1 {
     margin-bottom: 25px;
 }
 
+/* The whole page under the navbar.
+ * 100vh = the full height of the screen.
+ * We subtract 56px because that is the height of the navbar on top,
+ * so the page fits exactly in the screen without scrolling. */
+#sudoku-page {
+    min-height: calc(100vh - 56px);
+    padding: 15px 10px;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(9, 60px);
@@ -68,18 +77,24 @@ h1 {
     justify-content: center;
 }
 
+/* The buttons under the board */
 #controls {
-    margin-top: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+}
+
+#controls button {
+    margin: 2px;
 }
 
 #numbers {
     display: grid;
     grid-template-columns: repeat(9, 42px);
-    gap: 5px;
+    gap: 6px;
 }
 
 button {
@@ -103,10 +118,53 @@ button.active {
 #mode-controls {
     display: flex;
     gap: 10px;
+    /* If the screen is too narrow, the buttons go to a second line */
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #mode-controls button {
     padding: 10px 18px;
+}
+
+/* ---------- Make the board smaller on short screens ----------
+ * The board is 9 cells tall. On a laptop the screen is not tall enough
+ * for 60px cells plus the timer and the buttons, so we use smaller cells
+ * when the screen height (max-height) is small. */
+@media (max-height: 1020px) {
+    #board {
+        grid-template-columns: repeat(9, 48px);
+        grid-template-rows: repeat(9, 48px);
+    }
+
+    .cell {
+        width: 48px;
+        height: 48px;
+    }
+
+    .actual-number {
+        font-size: 26px;
+    }
+}
+
+@media (max-height: 900px) {
+    #board {
+        grid-template-columns: repeat(9, 40px);
+        grid-template-rows: repeat(9, 40px);
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+
+    .actual-number {
+        font-size: 22px;
+    }
+
+    .candidates {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 570px) {
