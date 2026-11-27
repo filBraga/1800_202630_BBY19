@@ -1,6 +1,7 @@
 import { db } from "./firebaseConfig.js";
 import { onAuthReady } from "./authentication.js";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { resolveTheme, setTheme } from "./theme.js";
 import {
     collection,
     getDocs,
@@ -49,6 +50,13 @@ onAuthReady(async function (user) {
             difficultyInput.value = data.difficulty;
         }
         difficultyInput.disabled = false;
+
+        // 5b. Appearance controls (also stay disabled until the saved values are in)
+        const theme = resolveTheme(data);
+        darkModeInput.checked = theme.darkMode;
+        darkPaletteInput.value = theme.palette;
+        darkModeInput.disabled = false;
+        darkPaletteInput.disabled = false;
 
         // 6. NOW favourites is filled, so draw the cards
         displayFavourites();
@@ -317,3 +325,31 @@ async function saveDifficulty(event) {
 document
     .getElementById("difficultyForm")
     .addEventListener("submit", saveDifficulty);
+
+// ---- Appearance: dark mode switch + colour theme ----
+// Both controls apply the new look immediately (via setTheme) and save it to
+// users/{uid}; theme.js then re-applies it on every other page at load.
+const darkModeInput = document.getElementById("darkModeInput");
+const darkPaletteInput = document.getElementById("darkPaletteInput");
+
+async function saveAppearance() {
+    const box = document.getElementById("themeAlert");
+    try {
+        await setTheme({
+            darkMode: darkModeInput.checked,
+            palette: darkPaletteInput.value,
+        });
+        box.className = "alert alert-success";
+        box.textContent = darkModeInput.checked
+            ? `Dark mode on (${darkPaletteInput.value}).`
+            : "Dark mode off.";
+    } catch (error) {
+        console.error("Could not save theme:", error);
+        box.className = "alert alert-danger";
+        box.textContent =
+            "Applied here, but couldn't save it to your account. Please try again.";
+    }
+}
+
+darkModeInput.addEventListener("change", saveAppearance);
+darkPaletteInput.addEventListener("change", saveAppearance);

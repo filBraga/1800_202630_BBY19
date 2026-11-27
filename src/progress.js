@@ -75,13 +75,13 @@ onAuthReady(async (user) => {
   try {
     if (!user) return;
     const userDoc = await getDoc(doc(db, "users", user.uid));
-    const saved = userDoc.data()?.difficulty;
-    if (saved) difficultySelect.value = saved;
+    // const saved = userDoc.data()?.difficulty;
+    // if (saved) difficultySelect.value = saved;
   } catch (error) {
-    console.error("Error loading difficulty:", error);
-    statusMsg.textContent = "Couldn't load your difficulty.";
+    // console.error("Error loading difficulty:", error);
+    // statusMsg.textContent = "Couldn't load your difficulty.";
   } finally {
-    difficultySelect.disabled = false;
+    // difficultySelect.disabled = false;
   }
 });
 

@@ -1,6 +1,8 @@
 // <site-navbar></site-navbar> — the logged-in menu, shared by every logged-in page.
 import { logoutUser } from "/src/authentication.js";
 import { onAuthReady } from "/src/authentication.js";
+// Applies the user's saved dark/light theme on every page that shows the navbar.
+import "/src/theme.js";
 
 const LINKS = [
     ["main.html", "Home"],
