@@ -2,34 +2,31 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App" />
+    <title>Stop Doom</title>
+    <meta name="description" content="Stop Doom: swap doomscrolling for a daily puzzle." />
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Other libraries go here -->
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap (CSS + JS for the navbar menu on phones) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet" /> -->
-    <!-- <link href="./styles/style.css" rel="stylesheet" /> -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font for the "Stop Doom" title -->
+    <link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap" rel="stylesheet" />
+    <style>
+        .jolly-lodger-regular {
+            font-family: "Jolly Lodger", system-ui;
+        }
+    </style>
 </head>
 
 <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
+    <!-- ========== Navbar ========== -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand fw-semibold" href="#home">Doomscroll</a>
+            <a class="navbar-brand fw-semibold" href="landing-page.html">Doomscroll</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -37,58 +34,119 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#break-ideas">Break ideas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#progress">My progress</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How it works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#goals">Our goals</a></li>
                 </ul>
-                <a class="btn btn-primary" href="#take-a-break">Take a break</a>
+                <a class="btn btn-primary" href="login.html">Login / Sign up</a>
             </div>
         </div>
     </nav>
 
+    <!-- ========== Hero (the big box at the top) ========== -->
     <div class="container my-5">
-        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                <h1 class="display-4 fw-bold lh-md fs-lg jolly-lodger-regular">Stop Doom</h1>
-                <p class="lead">
-                    Stop Doom is an app made by BCIT students to help reduce and eventually eliminate your doom
-                    scrolling habits!
-                    Stop Doom is designed to improve the users problem solving skills and mental health by providing
-                    fun puzzles
-                    each day so they can limit their time spent using social media. Ready to jump in? Log in or sign
-                    up now to begin
-                    your puzzle fun!
-                </p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Log In</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Sign Up</button>
-                </div>
-            </div>
+        <div class="p-4 p-lg-5 text-center">
+            <h1 class="display-3 fw-bold jolly-lodger-regular">Stop Doom</h1>
+            <p class="lead mx-auto" style="max-width: 600px;">
+                Put down the endless feed and pick up a puzzle.
+                Stop Doom helps you swap doomscrolling for a few minutes of Sudoku every day.
+            </p>
+            <a href="login.html" class="btn btn-primary btn-lg px-4 mt-3 fw-bold">Get started</a>
         </div>
     </div>
 
+    <!-- ========== About: what is the app ========== -->
+    <section id="about" class="container my-5">
+        <h2 class="fw-bold mb-3">What is Stop Doom?</h2>
+        <p>
+            "Doomscrolling" is when you keep scrolling through social media or news for a long time,
+            even when it makes you feel tired, anxious or bored. Most of us do it without noticing.
+        </p>
+        <p>
+            Stop Doom is a web app made by a team of BCIT students. When you feel like scrolling,
+            open Stop Doom instead and solve a Sudoku puzzle. The app keeps track of how much time
+            you spend on puzzles and how many days in a row you play, so you can see your progress.
+        </p>
+    </section>
+
+    <!-- ========== How it works: 3 cards ========== -->
+    <section id="how-it-works" class="container my-5">
+        <h2 class="fw-bold mb-4">How it works</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">1. Play a puzzle</h3>
+                        <p class="card-text">
+                            Choose a difficulty (easy, medium or hard) and solve a Sudoku.
+                            You can use pencil mode to write small notes in the cells.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">2. Track your time</h3>
+                        <p class="card-text">
+                            A timer saves how long you play. You can see your puzzle history
+                            and the total time you spent on puzzles instead of scrolling.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 card-title">3. Keep your streak</h3>
+                        <p class="card-text">
+                            Play every day to grow your daily streak. Add friends and
+                            get reminders and motivation messages to keep going.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== Our goals ========== -->
+    <section id="goals" class="container my-5">
+        <h2 class="fw-bold mb-3">Our goals</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>Less screen time on social media.</strong>
+                Help people notice and reduce the time they lose to doomscrolling.
+            </li>
+            <li class="list-group-item">
+                <strong>Better mental health.</strong>
+                Replace stressful feeds with a calm activity that gives you a small win.
+            </li>
+            <li class="list-group-item">
+                <strong>Stronger problem-solving skills.</strong>
+                Puzzles train your focus, memory and logic.
+            </li>
+            <li class="list-group-item">
+                <strong>Build a healthy habit.</strong>
+                Streaks, reminders and friends make it easier to come back every day.
+            </li>
+        </ul>
+    </section>
+
+    <!-- ========== Call to action ========== -->
+    <section class="container my-5 text-center">
+        <div class="p-4 rounded-3 bg-body-tertiary">
+            <h2 class="h3 fw-bold">Ready to stop the doom?</h2>
+            <p>Create a free account and play your first puzzle today.</p>
+            <a href="login.html" class="btn btn-primary btn-lg px-4">Login / Sign up</a>
+        </div>
+    </section>
+
+    <!-- ========== Footer ========== -->
     <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <p class="col-md-4 mb-0 text-body-secondary">© 2026 BBY19 Burnaby</p>
-            <a href="/"
-                class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-                aria-label="Bootstrap">
-                <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
+        <footer class="py-3 my-4 border-top">
+            <p class="mb-0 text-body-secondary">&copy; 2026 BBY19 Burnaby</p>
         </footer>
     </div>
-
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
