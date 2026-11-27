@@ -1,0 +1,96 @@
+
+// Firestore security rules for the whole app.
+// Deploy with: firebase deploy --only firestore:rules   (firebase.json points here).
+// Do not edit the rules in the console as well, or the two copies will drift.
+// Anything not matched below is denied. The Admin SDK
+// (scripts/sendReminders.js) ignores these rules.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // True if the signed-in user has an ACCEPTED friendship with uid.
+    // social.js names friendship docs "<smallerUid>_<largerUid>".
+    function isFriend(uid) {
+      let me = request.auth.uid;
+      let path = /databases/$(database)/documents/friendships/$(me < uid ? me + '_' + uid : uid + '_' + me);
+      return exists(path) && get(path).data.status == 'accepted';
+    }
+
+    // Your profile and puzzle sessions: you can write them; you and accepted friends can read them.
+    match /users/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isFriend(uid));
+      allow write: if request.auth != null && request.auth.uid == uid;
+
+      match /sessions/{sessionId} {
+        allow read: if request.auth != null && (request.auth.uid == uid || isFriend(uid));
+        allow write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // Email -> uid lookup. Anyone signed in can look up one exact email
+    // (no listing), and only you can write your own entry.
+    match /userLookup/{email} {
+      allow get: if request.auth != null;
+      allow create, update: if request.auth != null
+        && request.auth.token.email.lower() == email
+        && request.resource.data.uid == request.auth.uid;
+    }
+
+    // Daily puzzles: main.js creates them for signed-in users; profile.js reads them.
+    match /puzzles/{puzzleId} {
+      allow read: if true;
+
+      // The doc id must match the puzzle's own "code" field (main.js sets both).
+      allow create: if request.auth != null
+        && request.resource.data.code == puzzleId;
+
+      // Two visitors can seed the same deterministic id at once (see
+      // seedDailyPuzzles in main.js), so the loser's setDoc arrives as an
+      // update. Allow it only when nothing but the timestamp changes.
+      allow update: if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['last_updated']);
+
+      allow delete: if false;
+    }
+
+    // Motivation messages: shown after a puzzle, even when logged out.
+    // Add/edit them from the Firebase console (which ignores these rules).
+    match /messages/{messageId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // One doc per pair of users.
+    match /friendships/{id} {
+      // resource == null lets the app check whether a request already exists.
+      allow read: if request.auth != null
+        && (resource == null || request.auth.uid in resource.data.users);
+
+      // Only send requests as yourself, always as "pending".
+      allow create: if request.auth != null
+        && request.resource.data.requester == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.users.size() == 2
+        && request.auth.uid in request.resource.data.users
+        && request.resource.data.recipient in request.resource.data.users
+        && request.resource.data.recipient != request.auth.uid
+        // The doc id MUST be the two uids, smaller first (same as pairId() in
+        // social.js). isFriend() trusts this id, so without this check someone
+        // could forge a doc for a pair they are not part of.
+        && id == (request.auth.uid < request.resource.data.recipient
+                  ? request.auth.uid + '_' + request.resource.data.recipient
+                  : request.resource.data.recipient + '_' + request.auth.uid);
+
+      // Only the recipient can accept, and only these fields can change.
+      allow update: if request.auth != null
+        && resource.data.recipient == request.auth.uid
+        && resource.data.status == 'pending'
+        && request.resource.data.status == 'accepted'
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['status', 'recipientName', 'acceptedAt']);
+
+      // Either person can decline / cancel / remove.
+      allow delete: if request.auth != null && request.auth.uid in resource.data.users;
+    }
+  }
+}

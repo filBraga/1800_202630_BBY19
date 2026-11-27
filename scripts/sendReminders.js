@@ -14,7 +14,7 @@ import { getMessaging } from "firebase-admin/messaging";
 
 const DEFAULT_REMINDER_HOUR = 18; // 6pm, in 24-hour time. Used when a user never picked a time.
 // PLACEHOLDER: the address of your deployed site, opened when the user clicks the notification.
-const SITE_URL = "";
+const SITE_URL = "https://bby19-10d48.web.app";
 
 // The service account key arrives as a secret environment variable (a JSON string).
 // It is set in the GitHub repo settings and is NEVER committed to the project.
