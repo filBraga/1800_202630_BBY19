@@ -18,7 +18,7 @@ export default defineConfig({
                 sudoku: resolve(__dirname, "sudoku.html"),
                 timeSpent: resolve(__dirname, "timeSpent.html"),
                 profile: resolve(__dirname, "profile.html"),
-                landingPage: resolve(__dirname, "landing-page.html"),
+                landingPage: resolve(__dirname, "landing-page.html")
             },
         },
     },
